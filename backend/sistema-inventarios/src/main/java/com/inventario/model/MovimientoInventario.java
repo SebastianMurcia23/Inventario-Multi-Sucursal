@@ -61,8 +61,15 @@ public class MovimientoInventario {
     @Column(name = "fecha", nullable = false, updatable = false)
     private LocalDateTime fecha;
 
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @Column(name = "created_by")
+    private String createdBy;
+
     @PrePersist
     protected void onCreate() {
         fecha = LocalDateTime.now();
+        createdAt = LocalDateTime.now();
     }
 }

@@ -38,12 +38,23 @@ public class Inventario {
     @Column(name = "costo_promedio", nullable = false, precision = 14, scale = 4)
     private BigDecimal costoPromedio = BigDecimal.ZERO;
 
-    @Column(name = "actualizado_en", nullable = false)
-    private LocalDateTime actualizadoEn;
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated_at", nullable = false)
+    private LocalDateTime updatedAt;
+
+    @Column(name = "created_by")
+    private String createdBy;
 
     @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
+    }
+
     @PreUpdate
     protected void onUpdate() {
-        actualizadoEn = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
     }
 }

@@ -42,11 +42,23 @@ public class DetalleTransferencia {
     @Column(name = "notas", columnDefinition = "TEXT")
     private String notas;
 
-    @Column(name = "creado_en", nullable = false, updatable = false)
-    private LocalDateTime creadoEn;
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated_at", nullable = false)
+    private LocalDateTime updatedAt;
+
+    @Column(name = "created_by")
+    private String createdBy;
 
     @PrePersist
     protected void onCreate() {
-        creadoEn = LocalDateTime.now();
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = LocalDateTime.now();
     }
 }

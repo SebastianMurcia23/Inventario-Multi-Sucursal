@@ -12,9 +12,9 @@ import java.util.List;
 @Repository
 public interface AlertaRepository extends JpaRepository<Alerta, Integer> {
 
-    List<Alerta> findBySucursalIdSucursalAndResueltaFalseOrderByCreadoEnDesc(Integer idSucursal);
+    List<Alerta> findBySucursalIdSucursalAndResueltaFalseOrderByCreatedAtDesc(Integer idSucursal);
 
-    List<Alerta> findBySucursalIdSucursalOrderByCreadoEnDesc(Integer idSucursal);
+    List<Alerta> findBySucursalIdSucursalOrderByCreatedAtDesc(Integer idSucursal);
 
     List<Alerta> findByTipoAlertaAndResueltaFalse(TipoAlerta tipoAlerta);
 
@@ -40,7 +40,7 @@ public interface AlertaRepository extends JpaRepository<Alerta, Integer> {
             JOIN FETCH a.sucursal s
             LEFT JOIN FETCH a.producto p
             WHERE a.resuelta = false
-            ORDER BY a.creadoEn DESC
+            ORDER BY a.createdAt DESC
             """)
     List<Alerta> findTodasAlertasActivas();
 }

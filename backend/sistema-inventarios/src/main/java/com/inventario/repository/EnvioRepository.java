@@ -25,7 +25,7 @@ public interface EnvioRepository extends JpaRepository<Envio, Integer> {
             JOIN FETCH t.sucursalDestino sd
             WHERE e.tiempoReal IS NOT NULL
             AND e.tiempoReal > e.tiempoEstimado
-            ORDER BY e.creadoEn DESC
+            ORDER BY e.createdAt DESC
             """)
     List<Envio> findEnviosConRetraso();
 

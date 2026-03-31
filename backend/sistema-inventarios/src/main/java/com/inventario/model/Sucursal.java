@@ -22,8 +22,14 @@ public class Sucursal {
     @Column(name = "nombre", nullable = false, length = 100)
     private String nombre;
 
+    @Column(name = "codigo", nullable = false, length = 20)
+    private String codigo;
+
     @Column(name = "direccion", columnDefinition = "TEXT")
     private String direccion;
+
+    @Column(name = "ciudad", length = 50)
+    private String ciudad;
 
     @Column(name = "telefono", length = 20)
     private String telefono;
@@ -34,20 +40,23 @@ public class Sucursal {
     @Column(name = "estado", nullable = false)
     private Boolean estado = true;
 
-    @Column(name = "creado_en", nullable = false, updatable = false)
-    private LocalDateTime creadoEn;
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
 
-    @Column(name = "actualizado_en", nullable = false)
-    private LocalDateTime actualizadoEn;
+    @Column(name = "updated_at", nullable = false)
+    private LocalDateTime updatedAt;
+
+    @Column(name = "created_by")
+    private String createdBy;
 
     @PrePersist
     protected void onCreate() {
-        creadoEn = LocalDateTime.now();
-        actualizadoEn = LocalDateTime.now();
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
     }
 
     @PreUpdate
     protected void onUpdate() {
-        actualizadoEn = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
     }
 }

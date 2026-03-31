@@ -64,17 +64,24 @@ public class Transferencia {
     @Column(name = "fecha_recepcion")
     private LocalDateTime fechaRecepcion;
 
-    @Column(name = "actualizado_en", nullable = false)
-    private LocalDateTime actualizadoEn;
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated_at", nullable = false)
+    private LocalDateTime updatedAt;
+
+    @Column(name = "created_by")
+    private String createdBy;
 
     @PrePersist
     protected void onCreate() {
         fechaSolicitud = LocalDateTime.now();
-        actualizadoEn = LocalDateTime.now();
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
     }
 
     @PreUpdate
     protected void onUpdate() {
-        actualizadoEn = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
     }
 }
